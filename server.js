@@ -1,12 +1,16 @@
 import express from 'express';
 import methodeOverride from 'method-override';
-
+import mongoose from 'mongoose';
 const app = express();
+
+//連結mongoose
+mongoose.connect('mongodb://localhost:27017/blog',console.log("connect to mongodb")); //mongodb/目錄名
+
 //template engine
 app.set('views engine', 'ejs');
 
 //middleware
-
+app.use(express.json());
 app.use(methodeOverride("_method"));
 app.use(express.urlencoded({extended:false}));
 
